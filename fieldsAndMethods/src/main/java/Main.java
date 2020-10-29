@@ -15,6 +15,10 @@ public class Main {
             field.setAccessible(true);
             Class temp=field.getType();
             Class stringClass=String.class;
+            if (field.getAnnotations().length >0) {
+                printAnnotation(field.getAnnotations());
+
+            }
             if(temp ==stringClass){
                 field.set(test1,"milad");
             }else {
@@ -30,6 +34,11 @@ public class Main {
                 method.invoke(test1);
             }
         }
+        printAnnotation(annotations);
+
+
+    }
+    static void printAnnotation(Annotation[] annotations){
         for (Annotation annotation : annotations) {
             System.out.println(annotation.annotationType());
             TestAnnotation testAnnotation= ((TestAnnotation) annotation);
@@ -37,6 +46,5 @@ public class Main {
 
 
         }
-
     }
 }
